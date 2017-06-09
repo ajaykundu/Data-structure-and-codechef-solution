@@ -1,0 +1,30 @@
+void top_viewC(node* root,map<int,pair<int,int> > & m,int v,int level)
+    {
+    
+    if(root==NULL)
+        return ;
+    if(m.find(v)!=m.end() && level< m[v].second)
+        {
+        m[v].first=root->data;
+        m[v].second=level;
+    }else if(m.find(v)==m.end())
+    {
+    	m[v].first=root->data;
+    	m[v].second=level;
+    }
+
+    top_viewC(root->left,m,v-1,level+1);
+    top_viewC(root->right,m,v+1,level+1);
+}
+
+void top_view(node * root)
+{
+ map<int,pair<int,int> > m;
+    top_viewC(root,m,0,0);
+  
+    map<int,pair<int,int> >::iterator itr;
+    for(itr=m.begin();itr!=m.end();itr++)
+        {
+        cout<<(itr->second).first<<" ";
+    }
+}

@@ -1,0 +1,13 @@
+void loop(){
+	int i=0;
+
+	fu(i);
+	Serial.println(i);
+	
+}
+
+void fu(int & j)
+{
+	j=j+10;
+
+}
