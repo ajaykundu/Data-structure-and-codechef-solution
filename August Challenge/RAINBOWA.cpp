@@ -4,58 +4,33 @@ using namespace std;
 
 bool rainbow(int arr[],int n)
 {
-	stack<int> st;
-	bool flag=1;
-	int i=0;
+    int i=0,j=n-1;
+    int flag=1;
+    int index=1;
     if(arr[0]!=1)
+        return false;
+    while(i!=j)
     {
-    	return 0;
-    }
-	while(i<(n-1))
-	{
-       
-		if(arr[i]>7)
-         {
-         	flag=0;
-         	break;
-         }
-         else if(arr[i]==7)
-         {
-         	i++;
-         	break;
-         }
-         else if(arr[i]==arr[i+1] || (arr[i]+1)==arr[i+1])
-         {
-         	st.push(arr[i]);
-         //	cout<<arr[i]<<" ";
-         	i++;
-         }
-         else {
-         	    flag=0;
-         	    break;
-         }
+        //cout<<"hello"<<endl;
+        //cout<<arr[i]<<" "<<index<<endl;
 
-	}
-   //cout<<"becho"<<endl;
-
-	while((i<n) && (flag))
-	{    
-         if(st.empty())
-         {
+          if(arr[i]!=arr[j] || (arr[i]!=index && arr[i]!=index+1) || arr[i]>=7)
+          {
             flag=0;
             break;
-         }else 
-		if(st.top()==arr[i])
-		{
-			st.pop();
-			i++;
-		}else {
-			flag=0;
-			break;
-		}
-	}
+          }
+       index=arr[i];
+          i++;
+          j--;
+        
+    }
 
-	return flag;
+    if(i==j && arr[i]!=7)
+    {
+       return false;
+    }
+
+return flag;
 }
 
 int main(int argc, char const *argv[])
