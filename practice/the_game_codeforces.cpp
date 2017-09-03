@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
      if(flag)
      	cout<<"YES"<<endl;
      else 
-     	cout<<"NO"<<endl;
+     	cout<<"NO"<<endl; 
 
 	return 0;
 }
