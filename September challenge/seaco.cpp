@@ -2,37 +2,27 @@
 #include <vector>
 using namespace std;
 
-void command1(int ansArr[],int l,int r,vector<int> v[],int i)
-{
-     v[i][3]++;
-}
-
-void command2(int ansArr[],vector<int> v[],int l,int r)
+void increment(vector<long long> v[],int l,int r,int curr)
 {
 	for(int i=l-1;i<r;i++)
 	{
-       if(v[i][0]==1)
-       {
-       	   command1(ansArr,v[i][1],v[i][2],v,i);
-       }
-       else {
-       	   command2(ansArr,v,v[i][1],v[i][2]);
-       }
+		v[i][3] = v[i][3] + 1 + v[curr][3];
+		v[i][3]=v[i][3]%1000000007;
 	}
 }
 
-void seaco(int n,int ansArr[],vector<int> v[],int q)
+void seaco(vector<long long> v[],int q)
 {
-	
-	for(int i=0;i<q;i++)
+	for(int i=q-1;i>=0;i--)
 	{
-		if(v[i][0]==1)
-		{
-			command1(ansArr,v[i][1],v[i][2],v,i);
-		}
-		else {
-			command2(ansArr,v,v[i][1],v[i][2]);
-		}
+         if(v[i][0]==1)
+         {
+         	v[i][3]++;
+         	
+         }
+         else {
+         	increment(v,v[i][1],v[i][2],i);
+         }
 	}
 }
 
@@ -44,33 +34,32 @@ int main(int argc, char const *argv[])
 	{
 		int n,q;
 		cin>>n>>q;
-		std::vector<int> v[q];
-		int ansArr[n]={0};
+		vector<long long> v[q];
+		long long arr[n]={0};
 		for(int i=0;i<q;i++)
 		{
-            int c,l,r; 
-            cin>>c>>l>>r;
-            v[i].push_back(c);
+			int m,l,r;
+			cin>>m>>l>>r;
+            v[i].push_back(m);
             v[i].push_back(l);
             v[i].push_back(r);
             v[i].push_back(0);
 		}
-		seaco(n,ansArr,v,q);
-        
-        for(int i=0;i<q;i++)
-        {
-        	if(v[i][0]==1)
-        	{
-        		for(int j=v[i][1]-1;j<v[i][2];j++)
-        		{
-                      ansArr[j]+=v[i][3];
-        		}
-        	}
-        }
 
+		seaco(v,q);
+		for(int i=0;i<q;i++)
+		{
+            if(v[i][0]==1)
+            {
+            	for(int j=v[i][1]-1;j<v[i][2];j++)
+            	{
+            		arr[j]=arr[j]+v[i][3];
+            	}
+            }
+		}
 		for(int i=0;i<n;i++)
 		{
-			cout<<ansArr[i]<<" ";
+             cout<<(arr[i])%1000000007<<" ";
 		}
 		cout<<endl;
 	}
