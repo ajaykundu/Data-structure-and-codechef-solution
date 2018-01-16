@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int rotate90(int *arr,int m,int n)
+int rotate90(int *(arr),int m,int n)
 {
 	for(int i=0;i<m;i++)
 	{
