@@ -30,6 +30,23 @@ struct pair minmax(int arr[],int low,int high)
 			minmaxval.max = arr[high];
 		}
 	}
+	mid = (low + high)/2;
+	mml = minmax(arr,low,mid);
+	mmr = minmax(arr,mid+1,high);
+	
+	if(mml.min < mmr.min)
+	{
+		minmaxval.min = mml.min;
+	}
+	else 
+	{
+		minmaxval.min = mmr.min;
+	}
+	
+	if(mml.max < mmr.max)
+	{
+		minmaxval
+	}
 }
 
 int main(int argc, char** argv)
